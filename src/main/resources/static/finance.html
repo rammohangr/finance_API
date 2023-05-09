@@ -1,0 +1,53 @@
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+	integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+	crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
+	integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
+	crossorigin="anonymous">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+<title>Finance WebServices</title>
+</head>
+<body ng-app="financeApp">
+	<form name="myForm">
+		<h1 align="center">Finance Details</h1>
+		<div class="container" ng-controller="financeController">
+			<label>Company :</label> 
+			<input type="text" ng-model="company" name="company"
+				placeholder=" Company Symbol" ng-pattern="/^[a-zA-Z]*$/" required><br>
+				<span style="color:red" ng-show="myForm.company.$dirty && myForm.company.$invalid">
+                  <span ng-show="myForm.company.$error.pattern">Please Enter Only Alphabets</span>
+                  <span ng-show="myForm.company.$error.required">Company is required</span>
+                  </span><br>
+			<button class="btn btn-primary" ng-click="searchCompany()" ng-disabled="myForm.$required || myForm.$invalid ">Search</button>
+			<br>
+			<p id="errorData" style="color:red">Please provide correct company symbol.</p>
+			<br> <label ng-show="showData"> Stock Details</label>
+			<ul id="companyData" ng-show="showData">
+				<li name="Symbol" ng-model="Symbol">Symbol : {{Symbol}}</li>
+				<li name="Price" ng-model="Price">Price in USD : {{Price}}</li>
+				<li name="Date" ng-model="Date">Date : {{Date}}</li>
+				<li name="Time" ng-model="Time">Time : {{Time}}</li>
+				<li name="Change" ng-model="Change">Change : {{Change}}</li>
+				<li name="PreviousClose" ng-model="PreviousClose">Previous
+					Close : {{PreviousClose}}</li>
+				<li name="High" ng-model="High">Day High : {{High}}</li>
+				<li name="Low" ng-model="Low">Day Low : {{Low}}</li>
+				<li name="Volume" ng-model="Volume">Volume : {{Volume}}</li>
+			</ul>
+		</div>
+	</form>
+	<!--Angular Controller-->
+	<script src="controller.js"></script>
+</body>
+</html>
